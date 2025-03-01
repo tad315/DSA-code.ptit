@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
+
+int main(){
+    fast;
+    int t; cin >> t;
+    string s;
+    while (t--){
+        cin >> s;
+        cout << s[0];
+        int tmp = s[0]-'0', x;
+        for (int i=1; i<s.size(); ++i){
+            x=s[i]-'0';
+            if (x!=tmp){
+                tmp=1;
+                cout << tmp;
+            }
+            else {
+                tmp = 0;
+                cout << tmp;
+            }
+        }
+        cout << endl;
+    }
+    return 0;
+}
