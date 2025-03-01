@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+int n, k, cnt = 0;
+vector <string> res;
+char s[16];
+
+void check(){
+    string tmp (s+1, s+n+1);
+    int f = 0;
+
+    for (int i = 0; i<=n-k; i++){
+        if (tmp.substr(i,k) == string (k,'A')){
+            f++;
+            if (i>0 && tmp[i-1] == 'A') return;
+            if (i+k<n && tmp[i+k] == 'A') return;
+        }
+    }
+    if (f == 1) {
+        res.push_back(tmp);
+        cnt++;
+    }
+}
+
+void Sinh (int i){
+    if (i>n){
+        check();
+        return;
+    }
+    s[i] = 'A';
+    Sinh(i+1);
+
+    s[i] = 'B';
+    Sinh(i+1);
+}
+
+int main (){
+    cin >> n >> k;
+    Sinh(1);
+    cout << cnt << endl;
+    for (const string &x: res) cout << x << endl;
+    return 0;
+}
