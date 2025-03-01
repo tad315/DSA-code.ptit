@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define fast ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+
+int main (){
+    fast;
+    int t;
+    int n,k; 
+    cin >> t;
+    while (t--){
+        cin >> n >> k;
+        int a[k+1], b[k+1], cnt = 0, i;
+        for (int j = 1; j<=k; j++){
+            cin >> b[j];
+            a[j] = b[j];
+        }
+        i = k;
+        while (i > 0 && a[i] == n-k+i) i--;
+        if (i<1) cout << k << endl;
+        else {
+            a[i]++;
+            for (int j = i+1; j<=k; j++) a[j] = a[j-1]+1;
+            for (int j = 1; j<=k; j++)
+                for (int f = 1; f<=k; f++)
+                    if (a[j] == b[f]) cnt++;
+            if (cnt == k) cnt = 0;
+            cout << k-cnt << endl;
+        }
+    }
+    return 0;
+}
