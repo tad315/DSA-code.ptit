@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+int n;
+vector <string> v;
+vector <int> tmp;
+int b[35]={};
+
+void in() {
+    string s="";
+    for (auto &x:tmp) s+= to_string(x) + " ";
+    v.push_back(s);
+}
+
+void Try (int i){
+    for (int j=i+1; j<=n; j++){
+        if (b[j]>b[i]){
+            tmp.push_back(b[j]);
+            if (tmp.size()>1) in();
+            Try(j);
+            tmp.pop_back();
+        }
+    }
+}
+
+int main(){
+    fast;
+    cin >> n;
+    for (int i=1; i<=n; ++i) cin >> b[i];
+    Try(0);
+    sort(v.begin(), v.end());
+    for (string &i:v) cout << i << endl;
+    return 0;
+}
