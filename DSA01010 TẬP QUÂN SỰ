@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+int main (){
+    int t,n,k;
+    cin >> t;
+    while (t--){
+        cin >> n >> k;
+        int a[k+1], b[k+1], cnt = 0, ind;
+        for (int i=1; i<=k; i++){
+            cin >> a[i];
+            b[i] = a[i];            
+        }
+        ind = k;
+        while (b[ind]==n-k+ind && ind>0) ind--;
+        if (ind<1) cout << k << endl;
+        else {
+            b[ind]++;
+            for (int i = ind+1; i<=k; i++) b[i] = b[i-1]+1;
+            for (int i=1; i<=k; i++)  for (int j=1; j<=k; j++)
+                if (b[i]==a[j]) cnt++;
+            if (cnt==k) cnt = 0;
+            cout << k-cnt << endl;
+        }
+    }
+    return 0;
+}
