@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+int n; 
+vector <char> v;
+char a[2] = {'A', 'H'};
+
+void in(){
+    for (int i = 1; i<=n; ++i) cout << v[i];
+    cout << endl;
+}
+
+void Try(int i){
+    for (int j = 0; j<2; ++j){
+        if (v[i-1] =='H' && j==1) continue;
+        v[i] = a[j];
+        if (i==n-1) in();
+        else Try(i+1);
+    }
+}
+
+int main(){
+    fast;
+    int t; cin >> t;
+    while (t--){
+        cin >> n;
+        if (n==2) {
+            cout << "HA" << endl;
+            continue;
+        }
+        v.resize(n+1);
+        v[1] = 'H';
+        v[n] = 'A';
+        Try(2);
+    }
+    return 0;
+}
