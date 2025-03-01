@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+int a[]={1,2,5,10,20,50,100,200,500,1000};
+
+int main(){
+    fast;
+    int t, n; cin >> t;
+    int cnt;
+    while (t--){
+        cin >> n;
+        cnt = 0;
+        int i = 9;
+        while (n){
+            cnt += n/a[i];
+            n %= a[i];
+            --i;
+        }
+        cout << cnt;
+        cout << endl;
+    }
+    return 0;
+}
