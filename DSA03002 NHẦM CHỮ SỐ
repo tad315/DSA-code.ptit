@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+int Min (string &s){
+    int ans = 0;
+    for (char &i: s){
+        if (i=='6') i='5';
+        ans = ans * 10 + i - '0';
+    }
+    return ans;
+}
+
+int Max (string &s){
+    int ans = 0;
+    for (char &i: s){
+        if (i=='5') i='6';
+        ans = ans * 10 + i - '0';
+    }
+    return ans;
+}
+
+int main (){
+    fast;
+    string a,b;
+    cin >> a >> b;
+    cout << Min (a) + Min (b) << " " << Max(a) + Max(b) << endl;
+    return 0;
+}
