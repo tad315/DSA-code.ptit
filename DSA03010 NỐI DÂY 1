@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+
+int main() {
+    fast;
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, x;
+        cin >> n;
+        long long sum = 0;
+        priority_queue<int, vector<int>, greater<int>> p;
+        while (n--){
+            cin >> x;
+            p.push(x);
+        }
+        while (p.size()>1){
+            x = p.top();
+            p.pop();
+            x += p.top();
+            p.pop();
+            sum += x;
+            p.push(x);
+        }
+        cout << sum << endl;
+    }
+    return 0;
+}
