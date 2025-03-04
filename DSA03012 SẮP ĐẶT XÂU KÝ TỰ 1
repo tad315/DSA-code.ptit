@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+int main() {
+    fast;
+    int t;
+    cin >> t;
+    while (t--) {
+        string s;
+        cin >> s;
+        map <char, int> mp; 
+        for (char c: s) mp[c]++;
+        int check = 1;
+        for (auto &x: mp){
+            if (x.second*2-1>s.size()) check *= -1;
+            else check *= 1;
+        }
+        if (check < 0) cout << "-1";
+        else cout << "1";
+        cout << endl;
+    }
+    return 0;
+}
