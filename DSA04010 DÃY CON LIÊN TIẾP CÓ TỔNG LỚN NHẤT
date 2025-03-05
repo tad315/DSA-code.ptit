@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+const long long mod = 123456789;
+//Thuat toan Kadane
+int solve (vector<int> &a, int n){
+    int maxSum = INT_MIN, tmp = 0;
+    for (int i = 0; i<n; i++){
+        tmp += a[i];
+        maxSum = max(maxSum, tmp);
+        if (tmp<0) tmp = 0;
+    }
+    return maxSum;
+}
+int main() {
+    fast;
+    int t; 
+    cin >> t;
+    while (t--){
+        int n;
+        cin >> n;
+        vector <int> a(n);
+        for (int i = 0; i<n; i++) cin >> a[i];
+        cout << solve(a,n) << endl;
+    }
+    return 0;
+}
