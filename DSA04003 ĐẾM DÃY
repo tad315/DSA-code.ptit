@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+const long long mod = 123456789;
+
+long long calc (long long n, long long k){
+    if (k==1) return n%mod;
+    long long ans = calc (n, k/2)%mod;
+    ans = (ans * ans) % mod;
+    if (k % 2 == 1) ans = (ans*n)%mod;
+    return ans%mod;
+}
+int main() {
+    fast;
+    int t; 
+    cin >> t;
+    while (t--){
+        long long n; 
+        cin >> n;
+        cout << calc(2,n-1) << endl;
+    }
+    return 0;
+}
