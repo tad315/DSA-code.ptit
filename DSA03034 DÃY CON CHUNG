@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+void solve(vector<int> &a, vector<int> &b, vector<int> &c){
+    map<int, int> mb, mc;
+    vector <int> res;
+    for (int x:b) mb[x]++;
+    for (int x:c) mc[x]++;
+    for (int x:a){
+        if (mb[x]>0 && mc[x]>0){
+            res.push_back(x);
+            mb[x]--;
+            mc[x]--;
+        }
+    }
+    if (res.empty()) cout << "NO" << endl;
+    else{
+        for (int x:res) cout << x << " ";
+        cout << endl;
+    }
+        
+}
+
+int main() {
+    fast;
+    int t;
+    cin >> t;
+    while (t--) {
+        int n,m,k;
+        cin >> n >> m >> k;
+        vector <int> a(n), b(m), c(k);
+        for (int i=0; i<n; i++) cin >> a[i];
+        for (int i=0; i<m; i++) cin >> b[i];
+        for (int i=0; i<k; i++) cin >> c[i];
+        solve(a,b,c);
+    }
+    return 0;
+}
