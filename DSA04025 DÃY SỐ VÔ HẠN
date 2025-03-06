@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define ll long long
+const long long mod = 1e9 + 7;
+
+unordered_map <ll, ll> f;
+
+ll fin (ll n){
+    if (f[n]) return f[n];
+    ll k = n/2;
+    if (n%2==1) 
+        return f[n] = (fin(k)*fin(k+1)+fin(k-1)*fin(k))%mod;
+
+    return f[n] = (fin(k)*fin(k)+fin(k-1)*fin(k-1))%mod;
+}
+
+int main() {
+    fast;
+    int t; 
+    cin >> t;
+    f[0] = f[1] = 1;
+    while (t--){
+        long long n;
+        cin >> n;
+        if (!n) cout << 0 << endl;
+        cout << fin(n-1) << endl;
+    }
+    return 0;
+}
