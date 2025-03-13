@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define ll long long
+const long long mod = 1e9 + 7;
+
+int n, a[105];
+bool check;
+int sum;
+
+void Try(int i, int tmp = 0){
+    if (check) return;
+    if (tmp == sum){
+        check = true;
+        cout << "YES" << endl;
+        return;
+    }
+    if (tmp > sum) return;
+    for (int j = i; j<=n; j++) Try(j+1, tmp + a[j]);
+}
+
+int main(){
+    fast;
+    int t; 
+    cin >> t; 
+    while (t--){
+        cin >> n; 
+        sum = 0; check = false;
+        for (int i = 0; i<n; i++){ 
+            cin >> a[i];
+            sum += a[i];
+        }
+        if (sum & 1) cout << "NO" << endl;
+        else{
+            sum >>=1;
+            Try(1);
+            if (!check) cout << "NO" << endl;
+        }
+    }
+    return 0;
+}
