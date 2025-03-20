@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define ll long long
+const ll mod = 1e9 + 7;
+
+int main() {
+    fast;
+    int t; 
+    cin >> t; 
+    while (t--) {
+        int n, m;
+        cin >> n >> m;
+        vector<int> a1(n), a2(m);
+        unordered_map<int, int> d1, d2;
+        set<int> hop, giao;
+
+        for (int &i : a1) {
+            cin >> i;
+            d1[i]++;
+            hop.insert(i);
+        }
+        for (int &i : a2) {
+            cin >> i;
+            d2[i]++;
+            hop.insert(i);
+        }
+
+        for (int i : a1) {
+            if (d2[i]) {
+                giao.insert(i);
+            }
+        }
+
+        for (int i : hop) cout << i << " ";
+        cout << endl;
+
+        for (int i : giao) cout << i << " ";
+        cout << endl;
+    }
+    return 0;
+}
