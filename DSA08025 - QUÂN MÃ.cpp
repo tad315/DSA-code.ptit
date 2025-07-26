@@ -1,43 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
 #define boost ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0)
+#define ll long long
 #define endl '\n'
+#define all(x) x.begin(), x.end()
+#define pb push_back
+#define mp make_pair
+#define fi first
+#define se second
 
-bool visited[8][8];
-queue<pair<pair<int, int>, int>> q;
+const int dx[] = {2, 1, -1, -2, -2, -1, 1, 2};
+const int dy[] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-int dx[8] = {-2, -1, 1, 2, 2, 1, -1, -2};
-int dy[8] = {1, 2, 2, 1, -1, -2, -2, -1};
-
-pair<int, int> convert(string s)
+bool check(int x, int y)
 {
-    return {s[0] - 'a', s[1] - '1'};
+    return (x >= 0 && x < 8 && y >= 0 && y < 8);
 }
 
-int bfs(pair<int, int> start, pair<int, int> end)
+int steps (string s, string t)
 {
-    memset(visited, 0, sizeof(visited));
-    while (!q.empty()) q.pop();
-    q.push({start, 0});
-    visited[start.first][start.second] = 1;
+    int sx = s[0] - 'a', sy = s[1] - '1';
+    int tx = t[0] - 'a', ty = t[1] - '1';
+
+    if (sx == tx && sy == ty) return 0;
+
+    queue<pair<int, int>> q;
+    int dist[8][8] = {};
+    bool vis[8][8] = {};
+    q.push({sx, sy});
+    vis[sx][sy] = 1;
 
     while (!q.empty())
     {
-        auto [pos, steps] = q.front();
+        auto [x, y] = q.front(); 
         q.pop();
-        int x = pos.first, y = pos.second;
-
-        if (x == end.first && y == end.second) return steps;
-
         for (int i = 0; i < 8; ++i)
         {
             int nx = x + dx[i];
             int ny = y + dy[i];
-            if (nx >= 0 && nx < 8 && ny >= 0 && ny < 8 && !visited[nx][ny])
+            if (check(nx, ny) && !vis[nx][ny])
             {
-                visited[nx][ny] = 1;
-                q.push({{nx, ny}, steps + 1});
+                vis[nx][ny] = 1;
+                dist[nx][ny] = dist[x][y] + 1;
+                if (nx == tx && ny == ty) return dist[nx][ny];
+                q.push({nx, ny});
             }
         }
     }
@@ -46,15 +52,14 @@ int bfs(pair<int, int> start, pair<int, int> end)
 
 int main()
 {
-    int T;
-    cin >> T;
-    while (T--)
+    boost;
+    int t;
+    cin >> t;
+    while (t--)
     {
-        string s1, s2;
-        cin >> s1 >> s2;
-        auto start = convert(s1);
-        auto end = convert(s2);
-        cout << bfs(start, end) << endl;
+        string s, t;
+        cin >> s >> t;
+        cout << steps(s, t) << endl;
     }
     return 0;
 }
