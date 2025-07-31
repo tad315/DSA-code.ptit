@@ -1,20 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define boost ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0)
+#define ll long long
+#define endl '\n'
+#define all(x) x.begin(), x.end()
+#define pb push_back
+#define mp make_pair
+#define fi first
+#define se second
+const ll mod = 1e9 + 7;
 
-int main() {
-    fast;
-    int t; 
+ll calc(ll n, ll k)
+{
+    if (k == 0) return 1;
+    ll res = calc(n, k / 2);
+    res = (res * res) % mod;
+    if (k % 2 == 0) return res;
+    else return (res * n) % mod;
+}
+int main()
+{
+    boost;
+    int t;
     cin >> t;
-    while (t--){
-        long long n, k, res = 1, mod = 1e9+7;
+    while (t--)
+    {
+        ll n, k;
         cin >> n >> k;
-        while (k>0){
-            if (k%2==1) res = (res*n)%mod;
-            n = (n*n)%mod;
-            k/=2;
-        }
-        cout << res << endl;
+        cout << calc(n, k) << endl;
     }
     return 0;
 }
